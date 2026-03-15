@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\cvpow\\OneDrive\\Desktop\\mission11\\backend\\WebApplication1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{95B8E0D8-04A2-425D-BC0A-3958953621B8}|WebApplication1\\WebApplication1.csproj|c:\\users\\cvpow\\onedrive\\desktop\\mission11\\backend\\webapplication1\\webapplication1\\data\\bookdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{95B8E0D8-04A2-425D-BC0A-3958953621B8}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\data\\bookdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{95B8E0D8-04A2-425D-BC0A-3958953621B8}|WebApplication1\\WebApplication1.csproj|c:\\users\\cvpow\\onedrive\\desktop\\mission11\\backend\\webapplication1\\webapplication1\\data\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{95B8E0D8-04A2-425D-BC0A-3958953621B8}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\data\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{95B8E0D8-04A2-425D-BC0A-3958953621B8}|WebApplication1\\WebApplication1.csproj|c:\\users\\cvpow\\onedrive\\desktop\\mission11\\backend\\webapplication1\\webapplication1\\controllers\\bookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{95B8E0D8-04A2-425D-BC0A-3958953621B8}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\controllers\\bookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{95B8E0D8-04A2-425D-BC0A-3958953621B8}|WebApplication1\\WebApplication1.csproj|c:\\users\\cvpow\\onedrive\\desktop\\mission11\\backend\\webapplication1\\webapplication1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{95B8E0D8-04A2-425D-BC0A-3958953621B8}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{95B8E0D8-04A2-425D-BC0A-3958953621B8}|WebApplication1\\WebApplication1.csproj|c:\\users\\cvpow\\onedrive\\desktop\\mission11\\backend\\webapplication1\\webapplication1\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{95B8E0D8-04A2-425D-BC0A-3958953621B8}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\cvpow\\OneDrive\\Desktop\\mission11\\backend\\WebApplication1\\WebApplication1\\Program.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Program.cs",
+              "ToolTip": "C:\\Users\\cvpow\\OneDrive\\Desktop\\mission11\\backend\\WebApplication1\\WebApplication1\\Program.cs",
+              "RelativeToolTip": "WebApplication1\\Program.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-14T14:48:31.64Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\cvpow\\OneDrive\\Desktop\\mission11\\backend\\WebApplication1\\WebApplication1\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "WebApplication1\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\cvpow\\OneDrive\\Desktop\\mission11\\backend\\WebApplication1\\WebApplication1\\appsettings.Development.json",
+              "RelativeToolTip": "WebApplication1\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-14T14:47:09.134Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Book.cs",
+              "DocumentMoniker": "C:\\Users\\cvpow\\OneDrive\\Desktop\\mission11\\backend\\WebApplication1\\WebApplication1\\Data\\Book.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Data\\Book.cs",
+              "ToolTip": "C:\\Users\\cvpow\\OneDrive\\Desktop\\mission11\\backend\\WebApplication1\\WebApplication1\\Data\\Book.cs",
+              "RelativeToolTip": "WebApplication1\\Data\\Book.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-14T14:45:27.801Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BooksController.cs",
+              "DocumentMoniker": "C:\\Users\\cvpow\\OneDrive\\Desktop\\mission11\\backend\\WebApplication1\\WebApplication1\\Controllers\\BooksController.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Controllers\\BooksController.cs",
+              "ToolTip": "C:\\Users\\cvpow\\OneDrive\\Desktop\\mission11\\backend\\WebApplication1\\WebApplication1\\Controllers\\BooksController.cs",
+              "RelativeToolTip": "WebApplication1\\Controllers\\BooksController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-14T14:45:02.246Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BookDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\cvpow\\OneDrive\\Desktop\\mission11\\backend\\WebApplication1\\WebApplication1\\Data\\BookDbContext.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Data\\BookDbContext.cs",
+              "ToolTip": "C:\\Users\\cvpow\\OneDrive\\Desktop\\mission11\\backend\\WebApplication1\\WebApplication1\\Data\\BookDbContext.cs",
+              "RelativeToolTip": "WebApplication1\\Data\\BookDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-14T14:44:10.076Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
