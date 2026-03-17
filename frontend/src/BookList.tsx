@@ -23,14 +23,14 @@ const BookList = () => {
   useEffect(() => {
     setLoading(true);
     setError(null);
-
-    fetch(`/api/books?pageNum=${page}&pageSize=${pageSize}&sortBy=${sortBy}`)
+// use normal route of /api/controller, but add query params for pagination and sorting -- PASSED TO CONTROLLER 
+    fetch(`/api/books?pageNum=${page}&pageSize=${pageSize}&sortBy=${sortBy}`) // QUERY PARAMS: pageNum, pageSize, sortBy, use =${variable} to insert values
       .then(res => {
         if (!res.ok) throw new Error(`HTTP ${res.status} - ${res.statusText}`);
         return res.json();
       })
       .then((data: BookResponse) => {
-        setBooks(data.books);
+        setBooks(data.books); // our response has 2 props, books and total items so use data.books
         setTotalCount(data.totalItems);
         setLoading(false);
       })
@@ -39,9 +39,9 @@ const BookList = () => {
         setError("Failed to load books. Please check your internet connection.");
         setLoading(false);
       });
-  }, [page, pageSize, sortBy]);
+  }, [page, pageSize, sortBy]); // DEPENDENCIES: page, pageSize, sortBy - re-run effect when these change Updates the page 
 
-  // Calculate total pages
+  // Calculate total pages, then what we are returning in the UI for pagination controls
   const totalPages = Math.ceil(totalCount / pageSize);
 
   return (
@@ -57,9 +57,9 @@ const BookList = () => {
             className="form-select"
             aria-label="Number of books per page"
             value={pageSize}
-            onChange={(e) => {
-              setPageSize(Number(e.target.value));
-              setPage(1); // Reset to first page
+            onChange={(e) => { // setPageSize is setter
+              setPageSize(Number(e.target.value)); // Update page size, use Number to convert string to integer
+              setPage(1); // Reset to first page, defaulted to page 1, with 5 results.
             }}
           >
             <option value="5">5 per page</option>

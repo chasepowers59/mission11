@@ -27,12 +27,12 @@ namespace WebApplication1.Controllers
         /// <param name="sortBy">Sort field: "Title", "Author", or "Price". Defaults to "Title".</param>
         /// <returns>JSON object with books array and totalItems count.</returns>
         [HttpGet]
-        public async Task<IActionResult> GetBooks(
+        public async Task<IActionResult> GetBooks( // QUERY PARAMS: pageNum, pageSize, sortBy, MUST MATCH THE QUERY PARAMS IN THE FRONTEND!!!
             [FromQuery] int pageNum = 1,
             [FromQuery] int pageSize = 5,
             [FromQuery] string sortBy = "Title")
         {
-            // Validate pagination parameters
+            // Validate pagination parameters, if out of line just use defaults
             if (pageNum < 1) pageNum = 1;
             if (pageSize < 1) pageSize = 5;
             if (pageSize > 100) pageSize = 100;
@@ -57,7 +57,7 @@ namespace WebApplication1.Controllers
                 .Take(pageSize)
                 .ToListAsync();
 
-            return Ok(new
+            return Ok(new // use new to return multiple values in a single object, books and totalItems. I am returning Task<IActionResult> response with data
             {
                 books = books,
                 totalItems = totalCount
