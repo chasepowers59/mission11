@@ -29,6 +29,23 @@ main {
   padding: 2rem 0;
 }
 
+.app-sidebar {
+  top: 1.5rem;
+}
+
+.offcanvas.show {
+  visibility: visible;
+}
+
+.toast {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.toast.show {
+  opacity: 1;
+}
+
 footer {
   background-color: #f8f9fa;
   border-top: 1px solid #dee2e6;

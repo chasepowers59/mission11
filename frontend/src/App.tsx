@@ -1,6 +1,5 @@
-import React from 'react';
 import './App.css';
-import BookList from './BookList';
+import BookstorePage from './pages/BookstorePage';
 
 /**
  * Main App component for Hilton's Online Bookstore.
@@ -17,12 +16,7 @@ function App() {
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="container">
-        <section>
-          <BookList />
-        </section>
-      </main>
+      <BookstorePage />
 
       {/* Footer */}
       <footer className="container mt-5 py-3 border-top">

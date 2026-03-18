@@ -21,3 +21,8 @@ export type BookResponse = {
   books: Book[];
   totalItems: number;
 };
+
+export type CartItem = {
+  book: Book;
+  quantity: number;
+};

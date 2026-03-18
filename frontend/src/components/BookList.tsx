@@ -1,5 +1,12 @@
 import { useEffect, useState } from 'react';
-import type { Book, BookResponse } from './types/types';
+import type { Book, BookResponse, CartItem } from '../types/types';
+
+type BookListProps = {
+  selectedCategories: string[];
+  cart: CartItem[];
+  onAddToCart: (book: Book) => void;
+  onViewCart: () => void;
+};
 
 /**
  * BookList component displays a paginated, sortable list of books from the API.
@@ -8,12 +15,17 @@ import type { Book, BookResponse } from './types/types';
  * - Sorting: Sort by Title, Author, or Price
  * - Responsive: Bootstrap table layout
  */
-const BookList = () => {
+const BookList = ({
+  selectedCategories,
+  cart,
+  onAddToCart,
+  onViewCart,
+}: BookListProps) => {
   const [books, setBooks] = useState<Book[]>([]);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
   const [totalCount, setTotalCount] = useState(0);
-  const [sortBy, setSortBy] = useState<string>("Title");
+  const [sortBy, setSortBy] = useState<string>('Title');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -23,43 +35,68 @@ const BookList = () => {
   useEffect(() => {
     setLoading(true);
     setError(null);
-// use normal route of /api/controller, but add query params for pagination and sorting -- PASSED TO CONTROLLER 
-    fetch(`/api/books?pageNum=${page}&pageSize=${pageSize}&sortBy=${sortBy}`) // QUERY PARAMS: pageNum, pageSize, sortBy, use =${variable} to insert values
-      .then(res => {
+
+    const params = new URLSearchParams({
+      pageNum: page.toString(),
+      pageSize: pageSize.toString(),
+      sortBy,
+    });
+
+    selectedCategories.forEach((category) => {
+      params.append('bookCategories', category);
+    });
+
+    fetch(`/api/books?${params.toString()}`)
+      .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status} - ${res.statusText}`);
         return res.json();
       })
       .then((data: BookResponse) => {
-        setBooks(data.books); // our response has 2 props, books and total items so use data.books
+        setBooks(data.books);
         setTotalCount(data.totalItems);
         setLoading(false);
       })
-      .catch(err => {
-        console.error("Fetch books failed:", err);
-        setError("Failed to load books. Please check your internet connection.");
+      .catch((err) => {
+        console.error('Fetch books failed:', err);
+        setError('Failed to load books. Please check your internet connection.');
         setLoading(false);
       });
-  }, [page, pageSize, sortBy]); // DEPENDENCIES: page, pageSize, sortBy - re-run effect when these change Updates the page 
+  }, [page, pageSize, sortBy, selectedCategories]);
 
-  // Calculate total pages, then what we are returning in the UI for pagination controls
+  useEffect(() => {
+    setPage(1);
+  }, [selectedCategories]);
+
   const totalPages = Math.ceil(totalCount / pageSize);
+  const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (
-    <div className="container mt-4">
-      <h2 className="mb-4">Professor Hilton's Bookstore</h2>
+    <div>
+      <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+        <div>
+          <h2 className="mb-1">Professor Hilton's Bookstore</h2>
+          <p className="text-muted mb-0">
+            {selectedCategories.length > 0
+              ? `Showing books in ${selectedCategories.join(', ')}`
+              : 'Showing all books'}
+          </p>
+        </div>
 
-      {/* Controls: Results Per Page and Sorting */}
+        <button className="btn btn-outline-dark" onClick={onViewCart} type="button">
+          View Cart <span className="badge rounded-pill text-bg-dark ms-2">{cartCount}</span>
+        </button>
+      </div>
+
       <div className="row mb-3">
-        {/* Results Per Page Dropdown */}
         <div className="col-md-3">
           <label className="form-label">Results Per Page</label>
           <select
             className="form-select"
             aria-label="Number of books per page"
             value={pageSize}
-            onChange={(e) => { // setPageSize is setter
-              setPageSize(Number(e.target.value)); // Update page size, use Number to convert string to integer
-              setPage(1); // Reset to first page, defaulted to page 1, with 5 results.
+            onChange={(e) => {
+              setPageSize(Number(e.target.value));
+              setPage(1);
             }}
           >
             <option value="5">5 per page</option>
@@ -68,7 +105,6 @@ const BookList = () => {
           </select>
         </div>
 
-        {/* Sort By Dropdown */}
         <div className="col-md-3">
           <label className="form-label">Sort By</label>
           <select
@@ -77,7 +113,7 @@ const BookList = () => {
             value={sortBy}
             onChange={(e) => {
               setSortBy(e.target.value);
-              setPage(1); // Reset to first page
+              setPage(1);
             }}
           >
             <option value="Title">Title (A-Z)</option>
@@ -87,14 +123,12 @@ const BookList = () => {
         </div>
       </div>
 
-      {/* Error Message */}
       {error && (
         <div className="alert alert-danger" role="alert">
           {error}
         </div>
       )}
 
-      {/* Loading State */}
       {loading && (
         <div className="text-center p-4">
           <div className="spinner-border" role="status">
@@ -103,50 +137,60 @@ const BookList = () => {
         </div>
       )}
 
-      {/* Books Table */}
       {!loading && books.length > 0 && (
-        <table className="table table-striped table-bordered shadow-sm">
-          <thead className="table-dark">
-            <tr>
-              <th>Title</th>
-              <th>Author</th>
-              <th>Publisher</th>
-              <th>ISBN</th>
-              <th>Classification</th>
-              <th>Pages</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {books.map((book) => (
-              <tr key={book.bookId}>
-                <td>{book.title}</td>
-                <td>{book.author}</td>
-                <td>{book.publisher}</td>
-                <td>{book.isbn}</td>
-                <td>{book.classification}</td>
-                <td>{book.pageCount}</td>
-                <td>${book.price.toFixed(2)}</td>
+        <div className="table-responsive">
+          <table className="table table-striped table-bordered shadow-sm align-middle">
+            <thead className="table-dark">
+              <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Publisher</th>
+                <th>ISBN</th>
+                <th>Classification</th>
+                <th>Pages</th>
+                <th>Price</th>
+                <th></th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {books.map((book) => (
+                <tr key={book.bookId}>
+                  <td>{book.title}</td>
+                  <td>{book.author}</td>
+                  <td>{book.publisher}</td>
+                  <td>{book.isbn}</td>
+                  <td>{book.classification}</td>
+                  <td>{book.pageCount}</td>
+                  <td>${book.price.toFixed(2)}</td>
+                  <td>
+                    <button
+                      className="btn btn-sm btn-primary"
+                      onClick={() => onAddToCart(book)}
+                      type="button"
+                    >
+                      Add to Cart
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
 
-      {/* No Results Message */}
       {!loading && books.length === 0 && !error && (
         <div className="alert alert-info" role="alert">
           No books found.
         </div>
       )}
 
-      {/* Pagination Controls */}
       {!loading && totalPages > 0 && (
         <div className="d-flex justify-content-between align-items-center mt-4">
           <button
             className="btn btn-outline-primary"
             disabled={page === 1}
             onClick={() => setPage(page - 1)}
+            type="button"
           >
             &laquo; Previous
           </button>
@@ -159,6 +203,7 @@ const BookList = () => {
             className="btn btn-outline-primary"
             disabled={page >= totalPages}
             onClick={() => setPage(page + 1)}
+            type="button"
           >
             Next &raquo;
           </button>

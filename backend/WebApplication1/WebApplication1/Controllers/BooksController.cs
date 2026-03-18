@@ -30,7 +30,8 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> GetBooks( // QUERY PARAMS: pageNum, pageSize, sortBy, MUST MATCH THE QUERY PARAMS IN THE FRONTEND!!!
             [FromQuery] int pageNum = 1,
             [FromQuery] int pageSize = 5,
-            [FromQuery] string sortBy = "Title")
+            [FromQuery] string sortBy = "Title",
+            [FromQuery] List<string>? bookCategories = null)
         {
             // Validate pagination parameters, if out of line just use defaults
             if (pageNum < 1) pageNum = 1;
@@ -38,6 +39,11 @@ namespace WebApplication1.Controllers
             if (pageSize > 100) pageSize = 100;
 
             var query = _context.Books.AsQueryable();
+
+            if (bookCategories != null && bookCategories.Count > 0)
+            {
+                query = query.Where(b => bookCategories.Contains(b.Category));
+            }
 
             // Apply sorting based on sortBy parameter
             query = sortBy.ToLower() switch
@@ -62,6 +68,15 @@ namespace WebApplication1.Controllers
                 books = books,
                 totalItems = totalCount
             });
+        }
+        [HttpGet("GetCategoryTypes")] // server the categories, getting each distinct
+        public IActionResult GetCategoryTypes() // frontend calls and get the json
+        {
+            var Categories = _context.Books
+            .Select(c => c.Category).Distinct().ToList();
+
+            return Ok(Categories);
+
         }
     }
 }

@@ -63,3 +63,4 @@ C:\Users\cvpow\OneDrive\Desktop\mission11\backend\WebApplication1\WebApplication
 C:\Users\cvpow\OneDrive\Desktop\mission11\backend\WebApplication1\WebApplication1\obj\Debug\net10.0\WebApplication1.pdb
 C:\Users\cvpow\OneDrive\Desktop\mission11\backend\WebApplication1\WebApplication1\obj\Debug\net10.0\WebApplication1.genruntimeconfig.cache
 C:\Users\cvpow\OneDrive\Desktop\mission11\backend\WebApplication1\WebApplication1\obj\Debug\net10.0\ref\WebApplication1.dll
+C:\Users\cvpow\OneDrive\Desktop\mission11\backend\WebApplication1\WebApplication1\obj\Debug\net10.0\WebApplication1.sourcelink.json
