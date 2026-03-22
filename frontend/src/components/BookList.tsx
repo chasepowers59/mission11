@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { buildApiUrl } from '../api';
 import type { Book, BookResponse, CartItem } from '../types/types';
 
 type BookListProps = {
@@ -46,7 +47,7 @@ const BookList = ({
       params.append('bookCategories', category);
     });
 
-    fetch(`/api/books?${params.toString()}`)
+    fetch(buildApiUrl(`/api/books?${params.toString()}`))
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status} - ${res.statusText}`);
         return res.json();

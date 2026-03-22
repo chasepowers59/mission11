@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { buildApiUrl } from '../api';
 
 type CategoryFilterProps = {
   selectedCategories: string[];
@@ -14,7 +15,7 @@ function CategoryFilter({
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await fetch('/api/books/GetCategoryTypes');
+        const res = await fetch(buildApiUrl('/api/books/GetCategoryTypes'));
         const data = await res.json();
 
         setCategories(data);

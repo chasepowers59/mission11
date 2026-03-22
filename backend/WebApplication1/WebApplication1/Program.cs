@@ -16,7 +16,21 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReact", policy =>
     {
-        policy.WithOrigins("http://localhost:3000")
+        var allowedOrigins = builder.Configuration["AllowedOrigins"]?
+            .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+            .ToList() ?? new List<string>();
+
+        if (!allowedOrigins.Contains("http://localhost:3000"))
+        {
+            allowedOrigins.Add("http://localhost:3000");
+        }
+
+        if (!allowedOrigins.Contains("https://localhost:3000"))
+        {
+            allowedOrigins.Add("https://localhost:3000");
+        }
+
+        policy.WithOrigins(allowedOrigins.ToArray())
             .AllowAnyMethod()
             .AllowAnyHeader();
     });
